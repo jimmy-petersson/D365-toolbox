@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070a">
+  <meta name="description" content="Validera SSCC och generera Code 128-etiketter i formatet 40 x 60 mm.">
+  <title>Barcode Generator | D365 Toolbox</title>
+  <link rel="stylesheet" href="site.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js" defer></script>
+  <script src="barcode.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="D365 Toolbox startsida">
+      <span class="brand-mark">D</span>
+      <span>D365 Toolbox</span>
+    </a>
+    <span class="status"><span class="status-dot"></span>Barcode Generator</span>
+  </header>
+
+  <main class="tool-main">
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Till startsidan</a>
+
+    <div class="tool-layout">
+      <section class="tool-copy" aria-labelledby="page-title">
+        <p class="eyebrow">Logistikverktyg</p>
+        <h1 id="page-title">Generate barcode</h1>
+        <p>Klistra in ett 18-siffrigt SSCC-nummer. Verktyget validerar GS1-kontrollsiffran och skapar en Code 128-etikett i formatet 40 × 60 mm.</p>
+
+        <form id="barcode-form" class="form-card" novalidate>
+          <label for="sscc">SSCC-nummer</label>
+          <div class="input-row">
+            <input id="sscc" name="sscc" type="text" inputmode="numeric" autocomplete="off" maxlength="18" placeholder="373400044008381724" aria-describedby="validation-message">
+            <button class="button" type="submit">Generera</button>
+          </div>
+          <p id="validation-message" class="message" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="preview-card" aria-labelledby="preview-title">
+        <h2 id="preview-title">Förhandsvisning</h2>
+        <p>Etikettstorlek 40 × 60 mm</p>
+        <div class="label-stage">
+          <p id="empty-state" class="placeholder-text">Ange ett giltigt SSCC-nummer för att generera etiketten.</p>
+          <div id="label" class="barcode-label" hidden aria-label="Barcode-etikett 40 gånger 60 millimeter">
+            <svg id="barcode" class="barcode" aria-label="Code 128 barcode"></svg>
+            <div id="human-readable" class="human-readable"></div>
+          </div>
+        </div>
+        <div id="actions" class="actions" hidden>
+          <button id="download-png" class="button" type="button">Ladda ned PNG</button>
+          <button id="download-pdf" class="button" type="button">Ladda ned PDF</button>
+          <button id="print-label" class="button" type="button">Skriv ut etikett</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
